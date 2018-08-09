@@ -5,36 +5,34 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayTest extends  TestCase{
 
-   //depends function on  multiple functions
+   //test data provider with array of arrays
 
-    public  function testOne(){
+    public function additionProvider (){
 
-        $stack=[];
-        $this->assertEmpty($stack);
-        return 'one';
+        //must return array of arrays
+        //better to user keys in the array as the test result will contain the key that fail the test
+
+        return [
+            'allZero'=>['0',0,0],
+            'oneZero'=>[1,0,1],
+           'ones'=> [1,1,2]
+        ];
+
+
 
     }
 
-
-    public  function testTow(){
-
-        $this->assertTrue(true);
-        return 'tow';
-    }
+    //adding the previous data provider to the test function
 
     /**
-     * @depends testOne
-     * @depends  testTow
+     * @dataProvider additionProvider
      */
+    public function testDataProvider($a,$b,$c){
+        //where a+b=c
 
-    public function testMultiDepends ($a,$b){
-        $this->assertSame('one',$a);
-        $this->assertSame('tow','tow');
+        $this->assertSame($c,$a+$b);
+
     }
-
-
-
-
 
 
 }
