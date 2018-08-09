@@ -10,5 +10,15 @@ Class OutputTest extends  PHPUnit\Framework\TestCase{
     }
 
 
+    //incomplete test
+
+    public  function testIncomplte(){
+        //write some test here then mark the function as incomplete
+
+        $this->markTestIncomplete();
+
+    }
+
+
 
 }
