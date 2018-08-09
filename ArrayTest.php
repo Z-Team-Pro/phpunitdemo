@@ -5,39 +5,34 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayTest extends  TestCase{
 
-   //depends function on function
+   //depends function on  multiple functions
 
-    public  function  testEmpty(){
+    public  function testOne(){
 
         $stack=[];
         $this->assertEmpty($stack);
-        return $stack;
+        return 'one';
 
     }
-    /**
-     * @depends testEmpty
-     */
 
 
-    public  function testPush(array  $stack){
+    public  function testTow(){
 
-
-        array_push($stack, 'foo');
-        $this->assertSame('foo', $stack[count($stack)-1]);
-        $this->assertSame(1, count($stack));
-        return $stack;
+        $this->assertTrue(true);
+        return 'tow';
     }
 
     /**
-     * @depends testPush
+     * @depends testOne
+     * @depends  testTow
      */
 
-    public function testPop (array $stack){
-
-        $this->assertSame('foo', array_pop($stack));
-        $this->assertEmpty($stack);
-
+    public function testMultiDepends ($a,$b){
+        $this->assertSame('one',$a);
+        $this->assertSame('tow','tow');
     }
+
+
 
 
 
