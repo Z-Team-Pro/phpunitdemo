@@ -22,6 +22,16 @@ class DoubleTest extends TestCase{
         $this->assertSame('test',$stub->doSomeThing());
      }
 
+     public function testCallBackfromMockClass(){
+
+        $stub=$this->createMock(Work::class);
+        $stub->method('doSomeThing')
+            ->willReturnCallback('strtoupper');
+
+        //then this funciton will return the vlue of strtoupper with arrgument
+         $this->assertSame('RAMY',$stub->doSomeThing('ramy'));
+
+     }
 
 
 
